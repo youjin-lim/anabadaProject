@@ -8,43 +8,29 @@
 		http://mybatis.org/schema/mybatis-spring http://mybatis.org/schema/mybatis-spring-1.2.xsd
 		http://www.springframework.org/schema/beans https://www.springframework.org/schema/beans/spring-beans.xsd
 		http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-4.3.xsd">
-
+	
 	<!-- Root Context: defines shared resources visible to all other web components -->
-
-
-	<!-- DB 연결 부분 / 오라클 접속 -->
-	<bean id="dataSource"
-		class="org.apache.commons.dbcp.BasicDataSource">
-		<property name="driverClassName"
-			value="net.sf.log4jdbc.sql.jdbcapi.DriverSpy" />
-		<property name="url"
-			value="jdbc:oracle:thin:@localhost:1521:orcl" />
-		<property name="username" value="scott" />
-		<property name="password" value="tiger" />
+		
+	
+	<!-- 오라클 접속 -->
+	<bean id="dataSource" class="org.springframework.jdbc.datasource.DriverManagerDataSource">
+		<property name="driverClassName" value="net.sf.log4jdbc.sql.jdbcapi.DriverSpy"/>
+		<property name="url" value="jdbc:log4jdbc:oracle:thin:@localhost:1521:orcl" />
+		<property name="username" value="scott"/>
+		<property name="password" value="tiger"/>
 	</bean>
-
-	<!-- Mybatis 연동 -->
-	<bean id="sqlSessionFactory"
-		class="org.mybatis.spring.SqlSessionFactoryBean">
-		<property name="dataSource" ref="dataSource" />
-		<property name="configLocation"
-			value="classpath:/mybatis-config.xml" />
-		<property name="mapperLocations"
-			value="classpath:mappers/**/*Mapper.xml" />
-		<!-- /* : 경로의 바로 하위에 있는 모든 경로 매핑 , ex) AAA/* : AAA/BBB, AAA/CCC 해당, AAA/BBB/CCC 
-			해당하지 않음 /** : 경로의 모든 하위 경로(디렉토리) 매핑 , ex) AAA/** : AAA/BBB, AAA/CCC, AAA/BBB/CCC, 
-			AAA/BBB/CCC/.../.../... 전부 해당 *Mapper : 어쩌고저쩌고Mapper 모두 포함 -->
+	
+	<!-- mybatis 연동 -->
+	<bean id="sqlSessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean">
+		<property name="dataSource" ref="dataSource"/>
+		<property name="configLocation" value="classpath:/mybatis-config.xml"/>
+		<property name="mapperLocations" value="classpath:/mappers/*.xml"/>
 	</bean>
-
-	<bean id="sqlSession"
-		class="org.mybatis.spring.SqlSessionTemplate"
-		destroy-method="clearCache">
-		<constructor-arg name="sqlSessionFactory"
-			ref="sqlSessionFactory" />
-		<!-- id=sqlSessionTemplate라는 아이디에 따라서 @Autowired를 따라서 생성자를 통해 BoardDaoMybatis.java로 
-			들어감 -->
+	<bean id="sqlSession" class="org.mybatis.spring.SqlSessionTemplate" destroy-method="clearCache">
+		<constructor-arg name="sqlSessionFactory" ref="sqlSessionFactory"/>
 	</bean>
-
-
-
+	
+	
+	
+	
 </beans>
