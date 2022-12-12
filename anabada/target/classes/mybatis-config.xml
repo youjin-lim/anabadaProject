@@ -1,5 +1,4 @@
 <?xml version="1.0" encoding="UTF-8"?>
-
 <!DOCTYPE configuration 
 PUBLIC "-//mybatis.org//DTD Config 3.0//EN" 
 "http://mybatis.org/dtd/mybatis-3-config.dtd">
@@ -8,14 +7,16 @@ PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
 
 <!-- 마이바티스 작동 규칙정의 -->
 <settings>
-   <setting name="cacheEnabled" value="false"/>
-   <setting name="useGeneratedKeys" value="true"/>
-   <setting name="mapUnderscoreToCamelCase" value="false"/>
+	<setting name="cacheEnabled" value="false"/>
+	<setting name="useGeneratedKeys" value="true"/>
+	<setting name="mapUnderscoreToCamelCase" value="false"/>
 </settings>
 
 <typeAliases>
-  <typeAlias type="com.anabada.web.vo.PBoardVO" alias="PBoardVO" />
-  
+	<typeAlias type="com.anabada.web.vo.MemberVO" alias="memberVO"/>
+	<typeAlias type="com.anabada.web.vo.HelpVO" alias="helpVO"/>
+	<typeAlias type="com.anabada.web.vo.QnaVO" alias="qnaVO"/>
+	<typeAlias type="com.anabada.web.vo.QnaReplyVO" alias="qnareplyVO"/>
 </typeAliases>
 
 </configuration>

@@ -8,7 +8,6 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
@@ -34,29 +33,7 @@ public class HomeController {
 		
 		model.addAttribute("serverTime", formattedDate );
 		
-		return "home";
+		return "index";
 	}
-	
-	// test
-		@RequestMapping(value = "/test", method = RequestMethod.GET)
-		public String test(Model model) {
-			String kbs = "아름다운 대한민국!";
-			model.addAttribute("datadata", kbs);
-			logger.info("test: " + kbs);
-
-			return "/test/productwrite";
-			
-			
-			
-			
-			
-	}
-		
-		@RequestMapping(value = "/pro", method = RequestMethod.GET)
-		public String protest(Model model) {
-			
-			System.out.println("여기여기");
-			return "/product/productwrite";
-		}
 		
 }
