@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="putInMapper">
+<!-- 알바 구인 게시물 작성 -->
+<insert id="insert" parameterType="PutInVO">
+INSERT INTO PUTIN_JOB
+(ID, P_BNO, P_NAME, P_GENDER, P_AGE, P_TEL, P_COMPANY, P_START, P_END, J_BNO)
+VALUES(#{id}, PUTIN_JOB_SEQ.NEXTVAL, #{p_name}, #{p_gender}, #{p_age}, #{p_tel}, #{p_company}, #{p_start}, #{p_end}, #{j_bno})
+</insert>
+
+</mapper>
