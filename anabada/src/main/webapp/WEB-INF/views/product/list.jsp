@@ -210,7 +210,7 @@
 						</a></td>
 						<td><c:out value="${list.p_type }"></c:out></td>
 						<td><c:out value="${list.id }"></c:out></td>
-						<td><fmt:formatDate value="${list.p_regdate }" pattern="yyyy.mm.dd" /></td>
+						<td><fmt:formatDate value="${list.p_regdate }" pattern="yyyy.MM.dd" /></td>
 						<td><c:out value="${list.p_count }"></c:out></td>
 						<td><c:out value="${list.p_heart }"></c:out></td>
 

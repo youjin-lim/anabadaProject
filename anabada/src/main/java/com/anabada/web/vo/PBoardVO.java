@@ -13,7 +13,7 @@ public class PBoardVO {
 	private String sell_b;
 	private String p_content;
 	private Date p_regdate;
-	private String p_file;
+	private int p_file;
 	private int p_count;
 	private int p_heart;
 	private String id;
@@ -73,10 +73,10 @@ public class PBoardVO {
 	public void setP_regdate(Date p_regdate) {
 		this.p_regdate = p_regdate;
 	}
-	public String getP_file() {
+	public int getP_file() {
 		return p_file;
 	}
-	public void setP_file(String p_file) {
+	public void setP_file(int p_file) {
 		this.p_file = p_file;
 	}
 	public int getP_count() {

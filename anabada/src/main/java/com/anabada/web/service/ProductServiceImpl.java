@@ -1,6 +1,7 @@
 package com.anabada.web.service;
 
 import java.util.List;
+import java.util.Map;
 
 import javax.inject.Inject;
 
@@ -8,6 +9,7 @@ import org.springframework.stereotype.Service;
 
 import com.anabada.web.dao.PBoardDAO;
 import com.anabada.web.vo.PBoardVO;
+import com.anabada.web.vo.PfileVO;
 import com.anabada.web.vo.SearchCriteriapro;
 import com.anabada.web.vo.SimilarSearch;
 @Service
@@ -22,10 +24,10 @@ public class ProductServiceImpl  implements ProductService {
 	
 	//글쓰기 저장
 	@Override
-	public void write(PBoardVO pboardVO) throws Exception {
+	public int write(PBoardVO pboardVO) throws Exception {
 		
 		
-		dao.write(pboardVO);
+	return 	dao.write(pboardVO);
 		
 		
 		
@@ -90,6 +92,24 @@ public class ProductServiceImpl  implements ProductService {
 		
 		
 		return dao.similar(si);
+	}
+
+
+ // 게시글 저장시 파일 저장
+	@Override
+	public void fileSave(Map<String, String> map) {
+		
+		dao.fileSave(map);
+		
+	}
+
+
+
+	//게시글에 해당하는 사진 정보 가져오기 (게시글 상세보기떄 실행)
+	@Override
+	public List<PfileVO> filelist(int pno) {
+		
+		return dao.filelist(pno);
 	}
 	
 	

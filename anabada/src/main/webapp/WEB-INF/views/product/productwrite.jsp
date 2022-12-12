@@ -31,7 +31,10 @@
 	border-radius: 10px;
 }
 </style>
-
+<%
+	
+session.setAttribute("member",session.getAttribute("member"));
+%>
 
 <script type="text/javascript">
 	$(document).ready(function() {
@@ -47,6 +50,19 @@
 			formObj.attr("method", "post");
 			formObj.submit();
 		});
+		
+		//직거래 선택시 
+		$("#sell_a").on("click" , function() {
+			
+			/**/
+			if($("#local").css("display")=="none"  ){
+				$("#local").show();
+			}else{
+				#("#local").hide();
+			}
+			
+		});
+		
 
 	})
 
@@ -117,7 +133,7 @@
 		<h2>카페 글쓰기</h2>
 
 		<form name="writeForm"   enctype="multipart/form-data"  >
-            <input  type="text"  name="id" value="${member.id }" >
+            <input  type="text"  name="id" value="${userId }" >
 			<table>
 				<tr>
 					<td>
@@ -177,6 +193,7 @@
 
 							<input type="checkbox" id="sell_a" name="sell_a" value="직거래">
 							<label for="sell_a">직거래</label>
+							<input type="text" id="p_local"  name="p_local"  style="display: none;  " >
 							<input type="checkbox" id="sell_b" name="sell_b" value="택배">
 							<label for="sell_b">택배</label>
 
