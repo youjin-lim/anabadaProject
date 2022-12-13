@@ -7,6 +7,7 @@
 <head>
 <meta charset="UTF-8">
 <title>회원가입</title>
+<link href="../resources/css/styles.css" rel="stylesheet" />
 <script
 	src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 	
@@ -28,6 +29,12 @@
 			if ($("#pass").val() == "") {
 				alert("비밀번호를 입력해 주세요.");
 				$("#pass").focus();
+				return false;
+			}
+
+			if ($("#pass2").val() == "") {
+				alert("비밀번호를 재확인해 주세요.");
+				$("#pass2").focus();
 				return false;
 			}
 
@@ -67,58 +74,100 @@
 				$("#loca").focus();
 				return false;
 			}
+		})
+		
+		// 비밀번호 재확인
+		$("#pass2").focusout(function(){
+			if ($("#pass").val() == $("#pass2").val()){
+				$("#warning").text(" ");
+	            $("#warning").attr("style", "color:#0C6BBC");
+			} else {
+	            $("#warning").attr("style", "color:#FF0000; padding-left: 5px;");
+	            $("#warning").text("비밀번호가 일치하지 않습니다.");
+			}
 		});
 	});
 </script>
 </head>
 
-<body>
-	<section>
+<body style="background-color: #F9F9F9;">
+	<section class="regicon">
 		<form action="/member/register" method="post">
-			<div>
-				<label for="id">아이디</label>
-				<input type="text" id="id" name="id" />
-			</div>
+			<div class="regcenter">
+				<div class="reg-logo">
+					<a href="/"><img src="../resources/images/reglogo.png"></a>
+				</div>
 			
-			<div>
-				<label for="pass">비밀번호</label>
-				<input type="password" id="pass" name="pass" />
-			</div>
+				<div class="mt-22">
+					<label class="reg-font" for="id">아이디</label><br />
+					<div class="reg-box">
+						<input class="reg-in" type="text" id="id" name="id" />
+					</div>
+					<div>
+						<font id="id_feedback" size="2"></font>
+					</div>
+				</div>
 			
-			<div>
-				<label for="name">이름</label>
-				<input type="text" id="name" name="name" />
-			</div>
+				<div class="mt-22">
+					<label class="reg-font" for="pass">비밀번호</label><br />
+					<div class="reg-box">
+						<input class="reg-in" type="password" id="pass" name="pass" />
+					</div>
+				</div>
 			
-			<div>
-				<label for="nick">닉네임</label>
-				<input type="text" id="nick" name="nick" />
-			</div>
+				<div class="mt-22">
+					<label class="reg-font" for="pass2">비밀번호 재확인</label><br />
+					<div class="reg-box">
+						<input class="reg-in" type="password" id="pass2" name="pass2" />
+					</div>
+					<div>
+						<font id="warning" size="2"></font>
+					</div>
+				</div>
 			
-			<div>
-				<label for="gender">성별</label>
-				<input type="text" id="gender" name="gender" />
+				<div class="mt-22">
+					<label class="reg-font" for="name">이름</label><br />
+					<div class="reg-box">
+						<input class="reg-in" type="text" id="name" name="name" />
+					</div>
+				</div>
+				
+				<div class="mt-22">
+					<label class="reg-font" for="nick">닉네임</label><br />
+					<div class="reg-box">
+						<input class="reg-in" type="text" id="nick" name="nick" />
+					</div>
+				</div>
+				
+				<div class="mt-22">
+					<label class="reg-font" for="tel">휴대폰 번호</label><br />
+					<div class="reg-box">
+						<input class="reg-in" type="text" id="tel" name="tel" />
+					</div>
+				</div>
+				
+				<div class="mt-22">
+					<label class="reg-font" for="email">이메일</label><br />
+					<div class="reg-box">
+						<input class="reg-in" type="text" id="email" name="email" />
+					</div>
+				</div>
+				
+				<div class="mt-22">
+					<label class="reg-font" for="loca">지역</label><br />
+					<div class="reg-box">
+						<input class="reg-in" type="text" id="loca" name="loca" />
+					</div>
+				</div>
+				
+				<div>
+					<button class="reg-but" type="submit" id="submit">회원가입</button>
+				</div>
+				
+				<div class="reg-corp">
+					Copyright <b>ANABADA Corp.</b> All Rights Reserved.
+				</div>
 			</div>
-			
-			<div>
-				<label for="tel">휴대폰 번호</label>
-				<input type="text" id="tel" name="tel" />
-			</div>
-			
-			<div>
-				<label for="email">이메일</label>
-				<input type="text" id="email" name="email" />
-			</div>
-			
-			<div>
-				<label for="loca">지역</label>
-				<input type="text" id="loca" name="loca" />
-			</div>
-			
-			<div>
-				<button type="submit" id="submit">회원가입</button>
-				<button type="button" class="cancle">돌아가기</button>
-			</div>	
 		</form>
 	</section>
 </body>

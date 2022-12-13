@@ -17,12 +17,12 @@
 	<div class="container">
 		<div class="header">
 			<div class="logo-header">
-				<img src="resources/images/logo.png">
+				<a href="/"><img src="resources/images/logo.png"></a>
 			</div>
 			
 			<div class="sbox">
 				<div class="search-box">
-					<input class="search_in" type="text"><button class="search_but"><img src="resources/images/search.png"></button>
+					<input class="search-in" type="text"><button class="search-but"><img src="resources/images/search.png"></button>
 				</div>
 			</div>
 		</div>

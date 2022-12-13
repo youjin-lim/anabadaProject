@@ -52,11 +52,6 @@
 			</div>
 			
 			<div>
-				<label for="gender">성별</label>
-				<input type="text" id="gender" name="gender" value="${member.gender}" />
-			</div>
-			
-			<div>
 				<label for="tel">휴대폰 번호</label>
 				<input type="text" id="tel" name="tel" value="${member.tel}" />
 			</div>

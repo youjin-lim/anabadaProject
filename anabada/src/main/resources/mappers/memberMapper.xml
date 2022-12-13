@@ -5,13 +5,13 @@
 <mapper namespace="memberMapper">
 	<!-- 회원가입 -->
 	<insert id="register">
-		INSERT INTO a_member (id, pass, name, nick, gender, tel, email, loca)
-				VALUES (#{id}, #{pass}, #{name}, #{nick}, #{gender}, #{tel}, #{email}, #{loca})
+		INSERT INTO a_member (id, pass, name, nick, tel, email, loca)
+				VALUES (#{id}, #{pass}, #{name}, #{nick}, #{tel}, #{email}, #{loca})
 	</insert>
 	
 	<!-- 로그인 -->
 	<select id="login" resultType="memberVO">
-		SELECT id, pass, name, nick, gender, tel, email, loca
+		SELECT id, pass, name, nick, tel, email, loca
 		FROM a_member
 		WHERE id = #{id}
 		AND pass = #{pass}
@@ -24,7 +24,6 @@
 			pass = #{pass},
 			name = #{name},
 			nick = #{nick},
-			gender = #{gender},
 			tel = #{tel},
 			email = #{email},
 			loca = #{loca}

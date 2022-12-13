@@ -44,7 +44,7 @@
 			<c:if test="${member != null}">
 					<div class="nav-right">
 						<ul class="profile">
-							<li class="pro-li" id="memberUpdateBtn">${member.id} 님</li>
+							<li class="pro-li" id="memberUpdateBtn"><b>${member.nick}</b> 님</li>
 							<li class="pro-li" id="logoutBtn">로그아웃</li>
 							<li class="pro-li"><a href="/qna_board/list">고객센터</a></li>
 						</ul>

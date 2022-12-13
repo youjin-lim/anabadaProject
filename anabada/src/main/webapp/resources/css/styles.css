@@ -4,6 +4,8 @@
  font-family: 'Noto Sans KR', sans-serif;
 }
 
+
+
 /* 전체 */
 * {
   font-family: 'Noto Sans KR', sans-serif;
@@ -25,6 +27,15 @@ a {
   max-width: 1000px;
   margin: 0 auto 0 auto;
 }
+
+
+
+/* 여백*/
+.mt-22 {
+  margin: 22px 0 0 0;
+  padding: 0;
+}
+
 
 /* 네비게이션 */
 .navbar {
@@ -70,6 +81,8 @@ a {
   border-bottom: 1px solid #f1f2f5;
 }
 
+
+
 /* 헤더 */
 .header {
   display: flex;
@@ -95,7 +108,7 @@ a {
   border: 3px solid #0C6BBC;
 }
 
-.search_in {
+.search-in {
   width: 90%;
   height: 36px;
   padding-left: 12px;
@@ -105,7 +118,7 @@ a {
   font-size: 14px;
 }
 
-.search_but {
+.search-but {
   width: 45px;
   height: 40px;
   margin: 0;
@@ -140,9 +153,78 @@ a {
   cursor: pointer;
 }
 
-/* 본문 */
+
+
+/* 본문 페이지 기본 설정 */
 .mcont {
   margin: 0 auto;
   padding: 15px 20px;
   box-sizing: border-box;
+}
+
+
+
+/* 회원가입 */
+.regicon {
+  width: 100%;
+  min-width: 500px;
+  max-width: 500px;
+  margin: 0 auto 0 auto;
+}
+
+.regcenter {
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+}
+
+.reg-logo {
+  text-align: center;
+  padding: 70px 0 20px 0;
+  box-sizing: border-box;
+}
+
+.reg-box {
+  display: flex;
+  width: 400px;
+  height: 40px;
+  border: 1px solid #D5D5D5;
+  margin: 3px;
+}
+
+.reg-in {
+  width: 400px;
+  height: 38px;
+  padding-left: 12px;
+  padding-right: 12px;
+  border:0 solid black;
+  outline: none;
+  font-size: 14px;
+}
+
+.reg-font {
+  color: #555555;
+  font-size: 14px;
+  padding-left: 3px;
+}
+
+.reg-but {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 400px;
+  height: 60px;
+  margin: 40px auto 40px auto;
+  padding: 0;
+  border: none;
+  background: #0C6BBC;
+  color: #ffffff;
+  font-size: 20px;
+  cursor: pointer;
+}
+
+.reg-corp {
+  text-align : center;
+  font-size: 9px;
+  margin: 0 auto 20px auto;
 }
