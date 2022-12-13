@@ -1,0 +1,56 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>아나바다</title>
+<link href="resources/css/styles.css" rel="stylesheet" />
+<script
+	src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+
+<script type="text/javascript">
+	$(document).ready(function() {
+		$("#logoutBtn").on("click", function() {
+			location.href = "member/logout";
+		})
+
+		$("#registerBtn").on("click", function() {
+			location.href = "member/register";
+		})
+
+		$("#memberUpdateBtn").on("click", function() {
+			location.href = "member/memberUpdateView";
+		})
+	});
+</script>
+</head>
+
+<body>
+	<!-- nav 영역 -->
+	<nav class="navbar navbar-border">
+		<form class="container" name='homeForm' method="post" action="/member/login">
+			<c:if test="${member == null}">
+					<div class="nav-right">
+						<ul class="profile">
+							<li class="pro-li"><a href="/member/login">로그인</a></li>
+							<li class="pro-li"><a href="/qna_board/list">고객센터</a></li>
+						</ul>
+					</div>
+			</c:if>
+				
+			<c:if test="${member != null}">
+					<div class="nav-right">
+						<ul class="profile">
+							<li class="pro-li" id="memberUpdateBtn">${member.id} 님</li>
+							<li class="pro-li" id="logoutBtn">로그아웃</li>
+							<li class="pro-li"><a href="/qna_board/list">고객센터</a></li>
+						</ul>
+					</div>
+			</c:if>
+		</form>
+	</nav>
+</body>
+</html>

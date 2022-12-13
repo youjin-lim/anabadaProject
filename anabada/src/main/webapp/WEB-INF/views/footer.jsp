@@ -10,29 +10,12 @@
 <link href="resources/css/styles.css" rel="stylesheet" />
 <script
 	src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-	
 </head>
+
 <body>
-	<!-- 네비바 -->
-	<div>
-		<%@ include file="nav.jsp"%>
-	</div>
-	
-	<!-- 헤더 -->
-	<div>
-		<%@ include file="header.jsp"%>
-	</div>
-	
-	<!-- 메인 -->
-	<section class="container">
-		<div class="mcont">
-			메인 ~
-		</div>
-	</section>
-	
-	<!-- 푸터 -->
-	<div>
-		<%@ include file="footer.jsp"%>
+	<!-- footer 영역 -->
+	<div class="container" style="background-color: #e9cf99;">
+		카피라이터
 	</div>
 </body>
 </html>
