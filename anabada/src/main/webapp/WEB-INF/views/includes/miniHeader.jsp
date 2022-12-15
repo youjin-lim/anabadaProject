@@ -16,8 +16,8 @@
 	<!-- header 영역 -->
 	<div class="container">
 		<div class="header">
-			<div class="logo-header">
-				<a href="/"><img src="<c:url value='/images/logo.png'/>"></a>
+			<div class="logo-miniheader">
+				<a href="/"><img src="<c:url value='/images/minilogo.png'/>"></a>
 			</div>
 			
 			<div class="sbox">
@@ -31,15 +31,6 @@
 			<div>
 				<ul class="cate-ul">
 					<li class="cate-li"><img src="<c:url value='/images/menu.png'/>"></li>
-				</ul>
-			</div>
-			
-			<div>
-				<ul class="cate-ul">
-					<li class="cate-li">아르바이트</li>
-					<li class="cate-li">동네생활</li>
-					<li class="cate-li">맛집추천</li>
-					<li class="cate-li">동호회</li>
 				</ul>
 			</div>
 		</div>

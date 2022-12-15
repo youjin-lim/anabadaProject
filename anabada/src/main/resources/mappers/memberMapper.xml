@@ -9,6 +9,20 @@
 				VALUES (#{id}, #{pass}, #{name}, #{nick}, #{tel}, #{email}, #{loca})
 	</insert>
 	
+	<!-- 아이디 중복 체크 -->
+	<select id="idChk" resultType="int">
+		SELECT COUNT(*)
+		FROM a_member
+		WHERE id = #{id}
+	</select>
+	
+	<!-- 닉네임 중복 체크 -->
+	<select id="nickChk" resultType="int">
+		SELECT COUNT(*)
+		FROM a_member
+		WHERE nick = #{nick}
+	</select>
+	
 	<!-- 로그인 -->
 	<select id="login" resultType="memberVO">
 		SELECT id, pass, name, nick, tel, email, loca

@@ -33,4 +33,16 @@ public class MemberServiceImpl implements MemberService {
 		dao.memberDelete(vo);
 	}
 
+	@Override
+	public int idChk(MemberVO vo) throws Exception {
+		int result = dao.idChk(vo);
+		return result;
+	}
+
+	@Override
+	public int nickChk(MemberVO vo) throws Exception {
+		int nresult = dao.nickChk(vo);
+		return nresult;
+	}
+
 }

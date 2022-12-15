@@ -7,6 +7,7 @@ import javax.servlet.http.HttpSession;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -16,7 +17,7 @@ import com.anabada.web.service.MemberService;
 import com.anabada.web.vo.MemberVO;
 
 @Controller
-@RequestMapping("/member/*")
+@RequestMapping("*")
 public class MemberController {
 
 	private static final Logger logger = LoggerFactory.getLogger(MemberController.class);
@@ -25,28 +26,57 @@ public class MemberController {
 	MemberService service;
 	
 	// 회원가입 get
-	@RequestMapping(value = "/register", method = RequestMethod.GET)
+	@RequestMapping(value = "/member/register", method = RequestMethod.GET)
 	public void getRegister() throws Exception {
 		logger.info("회원가입 get ~ ");
 	}
 	
 	// 회원가입 post
-	@RequestMapping(value = "/register", method = RequestMethod.POST)
+	@RequestMapping(value = "/member/register", method = RequestMethod.POST)
 	public String postRegister(MemberVO vo) throws Exception {
 		logger.info("회원가입 post ~ ");
-		service.register(vo);
 		
+		int result = service.idChk(vo);
+		
+		try {
+			if (result == 1) {
+				return "/member/register";
+			} else if (result == 0) {
+				service.register(vo);
+			}
+			
+		} catch (Exception e) {
+			throw new RuntimeException();
+		}
 		return "redirect:/";
 	}
 	
+	// 아이디 중복 체크
+	@ResponseBody
+	@RequestMapping(value="/member/nickChk")
+	public int nickChk(MemberVO vo) throws Exception {
+		logger.info("닉네임 중복 체크 post ~ ");
+		int result = service.nickChk(vo);
+		return result;
+	}
+	
+	// 닉네임 중복 체크
+	@ResponseBody
+	@RequestMapping(value="/member/idChk")
+	public int idChk(MemberVO vo) throws Exception {
+		logger.info("아이디 중복 체크 post ~ ");
+		int nresult = service.idChk(vo);
+		return nresult;
+	}
+	
 	// 로그인 get
-	@RequestMapping(value = "/login", method = RequestMethod.GET)
+	@RequestMapping(value="/member/login", method = RequestMethod.GET)
 	public void login() throws Exception {
 		logger.info("로그인 get ~ ");
 	}
 	
 	// 로그인 post
-	@RequestMapping(value = "/login", method = RequestMethod.POST)
+	@RequestMapping(value="/member/login", method = RequestMethod.POST)
 	public String login(MemberVO vo, HttpServletRequest req, RedirectAttributes rttr) throws Exception {
 		logger.info("로그인 post ~ ");
 		
@@ -65,14 +95,14 @@ public class MemberController {
 	}
 	
 	// 회원 정보 수정 get
-	@RequestMapping(value="/memberUpdateView", method = RequestMethod.GET)
+	@RequestMapping(value="/member/memberUpdateView", method = RequestMethod.GET)
 	public String registerUpdateView() throws Exception {
 		logger.info("회원 정보 수정 get ~ ");
 		return "member/memberUpdateView";
 	}
 	
 	// 회원 정보 수정 post
-	@RequestMapping(value="/memberUpdate", method = RequestMethod.POST)
+	@RequestMapping(value="/member/memberUpdate", method = RequestMethod.POST)
 	public String registerUpdate(MemberVO vo, HttpSession session) throws Exception {
 		logger.info("회원 정보 수정 post ~ ");
 		service.memberUpdate(vo);
@@ -81,10 +111,27 @@ public class MemberController {
 	}
 	
 	// 로그아웃
-	@RequestMapping(value = "/logout", method = RequestMethod.GET)
+	@RequestMapping(value="/member/logout", method = RequestMethod.GET)
 	public String logout(HttpSession session) throws Exception {
 		session.invalidate();
 			
 		return "redirect:/"; 
-		}
+	}
+	
+	// 회원 정보 수정 get
+	@RequestMapping(value="/member/myPage", method = RequestMethod.GET)
+	public String myPage() throws Exception {
+		logger.info("마이페이지 get ~ ");
+		return "member/myPage";
+	}
+	
+	// 회원 정보 수정 post
+	@RequestMapping(value="/member/myPage", method = RequestMethod.POST)
+	public String myPage(MemberVO vo, HttpSession session) throws Exception {
+		logger.info("마이페이지 post ~ ");
+		service.memberUpdate(vo);
+		session.invalidate();
+		return "redirect:/"; 
+	}
+
 }

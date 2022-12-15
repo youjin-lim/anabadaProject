@@ -13,11 +13,6 @@
 	
 <script type="text/javascript">
 	$(document).ready(function() {
-		// 목록 이동
-		$(".cancle").on("click", function() {
-			location.href = "/";
-		})
-
 		// 유효성 검사
 		$("#submit").on("click", function() {
 			if ($("#id").val() == "") {
@@ -74,19 +69,82 @@
 				$("#loca").focus();
 				return false;
 			}
+			
 		})
-		
+	
 		// 비밀번호 재확인
-		$("#pass2").focusout(function(){
-			if ($("#pass").val() == $("#pass2").val()){
+		$("#pass2").focusout(function() {
+			if ($("#pass").val() == $("#pass2").val()) {
+				$('#submit').prop('disabled', false);
 				$("#warning").text(" ");
 	            $("#warning").attr("style", "color:#0C6BBC");
 			} else {
+				$('#submit').prop('disabled', true);
 	            $("#warning").attr("style", "color:#FF0000; padding-left: 5px;");
 	            $("#warning").text("비밀번호가 일치하지 않습니다.");
 			}
-		});
+		})
 	});
+	
+	// 아이디 중복 확인
+	$(function() {
+		// 아이디가 빈 칸일 때
+		$('#id').keyup(function() {
+			if ($(this).val() == "") {
+				$("#idChk").attr("style", "color:#FF0000; padding-left: 5px;");
+	            $("#idChk").text("아이디를 입력해 주세요.");
+			
+	            // 아이디 중복 체크
+			} else {
+				$.ajax({
+		 			url : "/member/idChk",
+		 			type : "post",
+		 			dataType : "json",
+		 			data : {"id" : $("#id").val()},
+		 			success : function(data){
+		 				if (data == 1) {
+		 					$("#idChk").attr("style", "color:#FF0000; padding-left: 5px;");
+		 		            $("#idChk").text("사용 중인 아이디입니다.");
+		 					return false;
+		 				} else if (data == 0) {
+		 					$("#idChk").text("사용 가능한 아이디입니다.");
+		 		            $("#idChk").attr("style", "color:#0C6BBC; padding-left: 5px;");
+		 				}
+		 			}
+				})
+			}
+		})
+	})
+	
+	// 닉네임 중복 확인
+		$(function() {
+		// 닉네임이 빈 칸일 때
+		$('#nick').keyup(function() {
+			if ($(this).val() == "") {
+				$("#nickChk").attr("style", "color:#FF0000; padding-left: 5px;");
+	            $("#nickChk").text("닉네임을 입력해 주세요.");
+			
+	            // 아이디 중복 체크
+			} else {
+				$.ajax({
+		 			url : "/member/nickChk",
+		 			type : "post",
+		 			dataType : "json",
+		 			data : {"nick" : $("#nick").val()},
+		 			success : function(data){
+		 				if (data == 1) {
+		 					$("#nickChk").attr("style", "color:#FF0000; padding-left: 5px;");
+		 		            $("#nickChk").text("사용 중인 닉네임입니다.");
+		 					return false;
+		 				} else if (data == 0) {
+		 					$("#nickChk").text("사용 가능한 닉네임입니다.");
+		 		            $("#nickChk").attr("style", "color:#0C6BBC; padding-left: 5px;");
+		 				}
+		 			}
+				})
+			}
+		})
+	})
 </script>
 </head>
 
@@ -104,7 +162,7 @@
 						<input class="reg-in" type="text" id="id" name="id" />
 					</div>
 					<div>
-						<font id="id_feedback" size="2"></font>
+						<font id="idChk" size="2"></font>
 					</div>
 				</div>
 			
@@ -137,6 +195,9 @@
 					<div class="reg-box">
 						<input class="reg-in" type="text" id="nick" name="nick" />
 					</div>
+					<div>
+						<font id="nickChk" size="2"></font>
+					</div>
 				</div>
 				
 				<div class="mt-22">
@@ -155,9 +216,20 @@
 				
 				<div class="mt-22">
 					<label class="reg-font" for="loca">지역</label><br />
-					<div class="reg-box">
-						<input class="reg-in" type="text" id="loca" name="loca" />
-					</div>
+					<select class="reg-select" id="loca" name="loca">
+						<option value="강원">강원</option>
+						<option value="경기">경기</option>
+						<option value="경남">경남</option>
+						<option value="경북">경북</option>
+						<option value="부산">부산</option>
+						<option value="서울">서울</option>
+						<option value="인천">인천</option>
+						<option value="전남">전남</option>
+						<option value="전북">전북</option>
+						<option value="제주">제주</option>
+						<option value="충남">충남</option>
+						<option value="충북">충북</option>
+					</select>
 				</div>
 				
 				<div>
